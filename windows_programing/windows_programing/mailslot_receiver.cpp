@@ -1,5 +1,10 @@
 // Receiver
 
+// Signaled : 꺼짐 
+// None Signaled : 켜짐 
+// Waitfor Single Object signaled 기다림
+// get exit code
+
 #include <iostream>
 #include <Windows.h>
 #include <tchar.h>
@@ -25,11 +30,11 @@ int main()
     // Message receiving
     while (true)
     {
-        TCHAR message_box[50] = {0);
+        TCHAR message_box[50] = { 0 };
         DWORD bytes_read;
 
         //   (mail_box_handle, 읽어들일 데이터 저장, 읽어들일 최대 크기, 함수 호출 수 읽어들인 데이터 크기, 비동기 overlapped)
-        if (!ReadFile(receive_mail_handle, message_box, sizeof(message_box)/*sizeof(CHAR)\* 50*/, &bytes_read, NULL))
+        if (!ReadFile(receive_mail_handle, message_box, sizeof(CHAR) * 50/*sizeof(message_box)*/, &bytes_read, NULL))
         {
             std::cout << "unable to read";
             CloseHandle(receive_mail_handle);
@@ -46,6 +51,7 @@ int main()
 
         message_box[bytes_read / sizeof(TCHAR)] = 0;
         _fputts(message_box, stdout);
+        std::cout << std::endl;
     }
 
     CloseHandle(receive_mail_handle);

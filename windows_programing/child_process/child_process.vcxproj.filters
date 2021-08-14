@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="operation_state_child.cpp">
+    <ClCompile Include="mailslot_sender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
